@@ -1,0 +1,81 @@
+<body class="h-screen">
+  <%- include('partials/navbar') %>
+  <main class="container mx-auto my-12">
+    <div class="overflow-x-auto px-4 md:px-2">
+      <form
+        action="/contacts/update"
+        method="post"
+        class="my-6 w-full grid place-items-center"
+      >
+        <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => {
+        %>
+        <div class="mb-4">
+          <div class="alert alert-error shadow-lg">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Error! <%= error.msg %> </span>
+            </div>
+          </div>
+        </div>
+        <% }) %> <% } %>
+
+        <div class="mb-4 flex items-center justify-between gap-2">
+          <a href="/contacts" class="btn btn-sm btn-ghost">Back</a>
+          <h2 class="text-xl font-semibold">Edit Contact</h2>
+        </div>
+        <div class="mb-4">
+          <label class="block" for="name">Name</label>
+          <input
+            value="<%= contact.name %>"
+            required
+            type="text"
+            name="name"
+            id="name"
+            class="input input-bordered w-full max-w-xs ml-auto"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block" for="nohp">Phone</label>
+          <input
+            value="<%= contact.nohp %>"
+            required
+            type="tel"
+            name="nohp"
+            id="nohp"
+            class="input input-bordered w-full max-w-xs ml-auto"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block" for="email">email</label>
+          <input
+            value="<%= contact.email %>"
+            type="email"
+            name="email"
+            id="email"
+            class="input input-bordered w-full max-w-xs ml-auto"
+          />
+        </div>
+        <div class="grid place-items-center">
+          <button class="btn btn-primary">Save</button>
+        </div>
+        <input
+          type="hidden"
+          name="oldName"
+          value="<%= contact.oldName || contact.name %>"
+        />
+      </form>
+    </div>
+  </main>
+</body>
