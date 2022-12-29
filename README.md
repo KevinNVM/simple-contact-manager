@@ -1,6 +1,6 @@
-# Node + Express + EJS + Tailwind CSS Starter Template
+# Simple Contact Manager
 
-The intention of this project is how to create app using Node.js + Express.js + EJS + Tailwind css
+##  Stack: Node + Express + EJS + Tailwind CSS
 
 ## Dependencies
 
@@ -11,7 +11,7 @@ The intention of this project is how to create app using Node.js + Express.js + 
 
 # Requirements
 
-You need to have installed [Node.js](https://nodejs.org/es/download/).
+-[Node.js](https://nodejs.org/es/download/).
 
 # Set up
 
