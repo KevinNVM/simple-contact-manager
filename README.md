@@ -11,7 +11,7 @@
 
 # Requirements
 
-You need to have installed [Node.js](https://nodejs.org/es/download/).
+-[Node.js](https://nodejs.org/es/download/).
 
 # Set up
 
