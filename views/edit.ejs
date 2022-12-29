@@ -1,20 +1,21 @@
 <body class="h-screen">
   <%- include('partials/navbar') %>
   <main class="container mx-auto my-12">
-    <div class="overflow-x-auto px-4 md:px-2">
+    <div class="px-4 overflow-x-auto md:px-2">
       <form
-        action="/contacts/update"
+        action="/contacts?_method=PUT"
         method="post"
-        class="my-6 w-full grid place-items-center"
+        class="grid w-full my-6 place-items-center"
       >
+        <input type="hidden" name="_id" value="<%= contact._id %>" />
         <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => {
         %>
         <div class="mb-4">
-          <div class="alert alert-error shadow-lg">
+          <div class="shadow-lg alert alert-error">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="stroke-current flex-shrink-0 h-6 w-6"
+                class="flex-shrink-0 w-6 h-6 stroke-current"
                 fill="none"
                 viewBox="0 0 24 24"
               >
@@ -31,7 +32,7 @@
         </div>
         <% }) %> <% } %>
 
-        <div class="mb-4 flex items-center justify-between gap-2">
+        <div class="flex items-center justify-between gap-2 mb-4">
           <a href="/contacts" class="btn btn-sm btn-ghost">Back</a>
           <h2 class="text-xl font-semibold">Edit Contact</h2>
         </div>
@@ -43,7 +44,7 @@
             type="text"
             name="name"
             id="name"
-            class="input input-bordered w-full max-w-xs ml-auto"
+            class="w-full max-w-xs ml-auto input input-bordered"
           />
         </div>
         <div class="mb-4">
@@ -54,7 +55,7 @@
             type="tel"
             name="nohp"
             id="nohp"
-            class="input input-bordered w-full max-w-xs ml-auto"
+            class="w-full max-w-xs ml-auto input input-bordered"
           />
         </div>
         <div class="mb-4">
@@ -64,7 +65,7 @@
             type="email"
             name="email"
             id="email"
-            class="input input-bordered w-full max-w-xs ml-auto"
+            class="w-full max-w-xs ml-auto input input-bordered"
           />
         </div>
         <div class="grid place-items-center">

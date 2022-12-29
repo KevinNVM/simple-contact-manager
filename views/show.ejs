@@ -1,14 +1,14 @@
 <body class="h-screen">
   <%- include('partials/navbar') %>
   <main class="container mx-auto my-12">
-    <div class="overflow-x-auto px-4 md:px-2">
-      <a href="/contacts" class="btn btn-base-100 mb-8">Back To Contacts</a>
+    <div class="px-4 overflow-x-auto md:px-2">
+      <a href="/contacts" class="mb-8 btn btn-base-100">Back To Contacts</a>
       <% if (locals.contact) { %>
       <section class="mx-auto bg-[#20354b] rounded-2xl px-8 py-6 shadow-lg">
         <div class="flex items-center justify-between">
-          <span class="text-gray-400 text-sm">2d ago</span>
+          <span class="text-sm text-gray-400">2d ago</span>
           <div class="dropdown dropdown-end dropdown-hover">
-            <label tabindex="0" class="btn-ghost btn btn-circle m-1">
+            <label tabindex="0" class="m-1 btn-ghost btn btn-circle">
               <svg
                 class="w-6 h-6"
                 data-darkreader-inline-stroke=""
@@ -28,31 +28,39 @@
             </label>
             <ul
               tabindex="0"
-              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+              class="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52"
             >
               <li>
-                <a
+                <!-- <a
                   onclick="return confirm(`Delete Contact ?`)"
-                  href="/contact/<%= contact.name %>/delete"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    data-darkreader-inline-stroke=""
-                    fill="none"
-                    stroke="currentColor"
-                    style="--darkreader-inline-stroke: currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    ></path>
-                  </svg>
-                  Delete
-                </a>
+                  href="/contact//delete"
+                > -->
+                <form action="/contacts?_method=DELETE" method="POST">
+                  <input
+                    type="hidden"
+                    name="name"
+                    value="<%= contact.name %>"
+                  />
+                  <button type="submit">
+                    <svg
+                      class="w-6 h-6"
+                      data-darkreader-inline-stroke=""
+                      fill="none"
+                      stroke="currentColor"
+                      style="--darkreader-inline-stroke: currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      ></path>
+                    </svg>
+                    Delete
+                  </button>
+                </form>
               </li>
               <li>
                 <a href="/contact/<%= contact.name %>/edit">
@@ -78,7 +86,7 @@
             </ul>
           </div>
         </div>
-        <div class="mt-6 w-48 avatar online">
+        <div class="w-48 mt-6 avatar online">
           <img
             src="https://api.lorem.space/image/face?w=480&h=480&hash=bart89fe"
             class="rounded-full"
@@ -88,7 +96,7 @@
         </div>
 
         <div class="mt-8">
-          <h2 class="text-white font-bold text-2xl tracking-wide">
+          <h2 class="text-2xl font-bold tracking-wide text-white">
             <%= locals.contact.name %>
           </h2>
         </div>
@@ -102,7 +110,7 @@
         </a>
       </section>
       <% } else{ %>
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col items-center justify-center">
         <h1 class="text-4xl">Contact Not Found!</h1>
       </div>
       <% } %>

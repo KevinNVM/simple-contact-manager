@@ -1,14 +1,14 @@
 <body class="h-screen">
   <%- include('partials/navbar') %>
   <main class="container mx-auto my-12">
-    <div class="overflow-x-auto px-4 md:px-2">
+    <div class="px-4 overflow-x-auto md:px-2">
       <% if (msg.length) { %>
       <div class="mb-4">
-        <div class="alert alert-success shadow-lg">
+        <div class="shadow-lg alert alert-success">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="stroke-current flex-shrink-0 h-6 w-6"
+              class="flex-shrink-0 w-6 h-6 stroke-current"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -25,7 +25,7 @@
       </div>
       <% } %>
 
-      <ul class="menu bg-base-200 p-2 rounded-box h-screen">
+      <ul class="h-screen p-2 menu bg-base-200 rounded-box">
         <li class="menu-title">
           <span>Contacts List | <a href="/contacts/new">Add New</a></span>
         </li>
@@ -38,10 +38,10 @@
             data-aos-delay="<%= i * 50 %>"
           >
             <a href="/contact/<%= contact.name %>" class="w-full">
-              <div class="flex gap-4 items-center">
+              <div class="flex items-center gap-4">
                 <div class="avatar online placeholder">
                   <div
-                    class="bg-neutral-focus text-neutral-content rounded-full w-16"
+                    class="w-16 rounded-full bg-neutral-focus text-neutral-content"
                   >
                     <span class="text-xl">KD</span>
                   </div>
@@ -54,7 +54,7 @@
             </a>
             <div>
               <div class="dropdown dropdown-end dropdown-hover">
-                <label tabindex="0" class="btn-ghost btn btn-circle m-1">
+                <label tabindex="0" class="m-1 btn-ghost btn btn-circle">
                   <svg
                     class="w-6 h-6"
                     data-darkreader-inline-stroke=""
@@ -74,31 +74,39 @@
                 </label>
                 <ul
                   tabindex="0"
-                  class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                  class="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a
-                      onclick="return confirm(`Delete Contact ?`)"
-                      href="/contact/<%= contact.name %>/delete"
+                    <form
+                      action="/contacts?_method=DELETE"
+                      method="POST"
+                      class="inline-flex"
                     >
-                      <svg
-                        class="w-6 h-6"
-                        data-darkreader-inline-stroke=""
-                        fill="none"
-                        stroke="currentColor"
-                        style="--darkreader-inline-stroke: currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        ></path>
-                      </svg>
-                      Delete
-                    </a>
+                      <input
+                        type="hidden"
+                        name="name"
+                        value="<%= contact.name %>"
+                      />
+                      <button type="submit">
+                        <svg
+                          class="w-6 h-6"
+                          data-darkreader-inline-stroke=""
+                          fill="none"
+                          stroke="currentColor"
+                          style="--darkreader-inline-stroke: currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          ></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </form>
                   </li>
                   <li>
                     <a href="/contact/<%= contact.name %>/edit">
